@@ -7,7 +7,7 @@ export default function Navbar() {
                 <Link href="/">
                     <button>Resume3</button>
                 </Link>
-                <Link href="/about">
+                <Link href="/create">
                     <button>Create</button>
                 </Link>
             </div>

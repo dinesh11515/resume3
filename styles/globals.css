@@ -5,3 +5,5 @@ body {
   color: white;
   background-color:#10002B;
 }
+@import '~antd/dist/antd.css';
+
