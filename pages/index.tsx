@@ -15,7 +15,7 @@ const Home: NextPage = () => {
       <Navbar />
       <div className="flex flex-col items-center mt-20 gap-2">
         <div className="flex text-4xl gap-2">Resume <p className="text-regal-purple font-weight-400">Building</p></div>
-        <p className='text-4xl'>Made Simple</p>
+        <p className="text-4xl ">Made Simple</p>
         <p className='text-gray-300'>Remote3 is a web3 based Resume buiding website</p>
         <button className='px-4 py-2 rounded text-black bg-regal-purple'>Create Now</button>
       </div>

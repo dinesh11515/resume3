@@ -6,6 +6,7 @@ import {
   getDefaultWallets,
   RainbowKitProvider,
   lightTheme,
+  darkTheme
 } from '@rainbow-me/rainbowkit';
 import {
   chain,
@@ -38,8 +39,8 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
       <WagmiConfig client={wagmiClient}>
         <RainbowKitProvider chains={chains}
-        theme={lightTheme({
-          accentColor: '#9D4EDD',
+        theme={darkTheme({
+          accentColor: '#8D72E1',
           accentColorForeground: 'white',
       })}
         modalSize="compact">
