@@ -8,10 +8,13 @@ import TextArea from "antd/lib/input/TextArea";
 import { CaretRightOutlined } from '@ant-design/icons';
 import { Collapse } from 'antd';
 import { DatePicker, Space } from 'antd';
-import {ImCross} from 'react-icons/im'
+import {ImCross} from 'react-icons/im';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const { RangePicker } = DatePicker;
 import { Web3Storage } from "web3.storage";
-import { useAccount } from "wagmi";
+import { useAccount,useSigner,useContract } from "wagmi";
+import {abi,contractAddress} from "../constants/index"
 const getBase64 = (img: RcFile, callback: (url: string) => void) => {
     const reader = new FileReader();
     reader.addEventListener('load', () => callback(reader.result as string));
@@ -51,6 +54,13 @@ export default function Create() {
     const [competitionsData,setCompetitionsData] = useState<any>([{},{},{}]);
     const {address} = useAccount();
     const [dataUrl,setDataUrl] = useState<string>();
+    const { data: signer, isError, isLoading } = useSigner();
+    const contract = useContract({
+        address: contractAddress,
+        abi: abi,
+        signerOrProvider: signer,
+    })
+
     function handleExp(name : string) {
         setExperience(false);
         setEducation(false);
@@ -240,8 +250,7 @@ export default function Create() {
             alert(err);
         }
     }
-    console.log(imageIpfsUrl);
-
+    console.log(contract)
     const uploadButton = (
         <div className="w-60 rounded-full bg-white p-12">
         {loading ? <LoadingOutlined /> : <PlusOutlined />}
@@ -277,26 +286,37 @@ export default function Create() {
         const cid = await client.put([files[0]]);
         const url = ("ipfs://"+cid+"/data.json");
         setDataUrl(url);
+        return cid;
       };
 
     
-    const create = () => {
-        let data: any = {}
-        data.name = (document.getElementById("name") as HTMLInputElement).value;
-        data.role = (document.getElementById("role") as HTMLInputElement).value;
-        data.description = (document.getElementById("description") as HTMLInputElement).value;
-        data.image = imageIpfsUrl;
-        data.email = (document.getElementById("email") as HTMLInputElement).value;
-        data.phone = (document.getElementById("phone") as HTMLInputElement).value;
-        data.github = (document.getElementById("github") as HTMLInputElement).value;
-        data.twitter = (document.getElementById("twitter") as HTMLInputElement).value;
-        data.experience = experienceData;
-        data.projects = projectsData;
-        data.education = educationData;
-        data.skills = skillsData;
-        data.competitions = competitionsData;
-        console.log(data);
-        storeContent(data);
+    const create = async() => {
+        try{
+            let data: any = {}
+            data.name = (document.getElementById("name") as HTMLInputElement).value;
+            data.role = (document.getElementById("role") as HTMLInputElement).value;
+            data.description = (document.getElementById("description") as HTMLInputElement).value;
+            data.image = imageIpfsUrl;
+            data.email = (document.getElementById("email") as HTMLInputElement).value;
+            data.phone = (document.getElementById("phone") as HTMLInputElement).value;
+            data.github = (document.getElementById("github") as HTMLInputElement).value;
+            data.twitter = (document.getElementById("twitter") as HTMLInputElement).value;
+            data.experience = experienceData;
+            data.projects = projectsData;
+            data.education = educationData;
+            data.skills = skillsData;
+            data.competitions = competitionsData;
+            console.log(data);
+            const cid = await storeContent(data);
+            const price = await contract?.getMatic();
+            console.log(price);
+            const tx = await contract?.create(cid,{value:price});
+            await tx?.wait();
+            toast.success("Resume Created Successfully");
+        }
+        catch(err){
+            console.log(err);
+        }
     }
 
 
@@ -536,7 +556,7 @@ export default function Create() {
                 }
                 <button className="px-8 py-3 rounded-lg bg-[#8D72E1] text-white text-lg" onClick={create}>Create Resume</button>
             </div>
-           
+            <ToastContainer />
         </div>
     )
 }

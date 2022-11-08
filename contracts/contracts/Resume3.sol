@@ -22,6 +22,7 @@ contract Resume3 is ERC721 {
     constructor() ERC721("Resume3", "RS3"){
         priceFeed = AggregatorV3Interface(0xd0D5e3DB44DE05E9F294BB0a3bEEaF030DE24Ada);
         creatingPrice = 50000000; // 0.5 usd
+        owner = payable(msg.sender);
     }
 
     function create(string memory _ipfsCid) public payable{

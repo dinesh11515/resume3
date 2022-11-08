@@ -10,7 +10,9 @@ import { useEffect, useState } from "react";
 import { ipfsFetch } from '@crossbell/ipfs-fetch'
 import { IpfsImage } from 'react-ipfs-image';
 import {useRouter} from 'next/router'
-
+import { useContractRead } from 'wagmi'
+import {contractAddress,abi} from '../constants/index'
+import { ethers } from "ethers"
 interface ResumeProps {
     name : string,
     role : string,
@@ -30,8 +32,10 @@ export default function Resume() {
 
     const [data,setData] = useState<ResumeProps>()
     const router = useRouter()
-    const {ipfs} = router.query
-    const getData = async () => {
+    const {id,ipfs,address} = router.query
+    console.log(id,ipfs,address)
+    
+    const getData = async (ipfs : string) => {
         try{
             
             const response = await ipfsFetch(
@@ -46,11 +50,45 @@ export default function Resume() {
             console.log(err)
         }
     }
+
+    const getCidByAddress = async () => {
+        try{
+            const provider = new ethers.providers.JsonRpcProvider('https://rpc-mumbai.maticvigil.com')
+            const contract = new ethers.Contract(contractAddress,abi,provider)
+            const cid = await contract.getCidByAddress(address)
+            console.log(cid)
+            getData(cid)
+        }
+        catch(err){
+           alert(err)
+        }
+    }
+
+    const getCidById = async () => {
+        try{
+            const provider = new ethers.providers.JsonRpcProvider('https://rpc-mumbai.maticvigil.com')
+            const contract = new ethers.Contract(contractAddress,abi,provider)
+            const cid = await contract.getCidByTokenId(id)
+            console.log(cid)
+            getData(cid)
+        }
+        catch(err){
+              alert(err)
+        }
+    }
+
+
     useEffect(() => {
         if(ipfs){
-            getData()
+            getData(ipfs as string)
         }
-    }, [ipfs])
+        else if(address){
+            getCidByAddress()
+        }
+        else if(id){
+            getCidById()
+        }
+    }, [ipfs,id,address])
     return (
         <div className="">
             <Head>
