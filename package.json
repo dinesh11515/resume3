@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@ant-design/icons": "^4.7.0",
+    "@chainlink/contracts": "^0.5.1",
     "@crossbell/ipfs-fetch": "^0.0.15",
     "@rainbow-me/rainbowkit": "^0.7.4",
     "antd": "^4.23.6",
