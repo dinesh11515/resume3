@@ -39,7 +39,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
       <WagmiConfig client={wagmiClient}>
         <RainbowKitProvider chains={chains}
-        theme={darkTheme({
+        theme={lightTheme({
           accentColor: '#8D72E1',
           accentColorForeground: 'white',
       })}

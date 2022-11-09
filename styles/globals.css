@@ -1,12 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@500&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+@import '~antd/dist/antd.css';
 
 
 body {
   color: white;
   background-color:#10002B;
 }
-@import '~antd/dist/antd.css';
-

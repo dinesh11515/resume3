@@ -15,6 +15,7 @@ const { RangePicker } = DatePicker;
 import { Web3Storage } from "web3.storage";
 import { useAccount,useSigner,useContract } from "wagmi";
 import {abi,contractAddress} from "../constants/index"
+import { ConnectButton } from "@rainbow-me/rainbowkit";
 const getBase64 = (img: RcFile, callback: (url: string) => void) => {
     const reader = new FileReader();
     reader.addEventListener('load', () => callback(reader.result as string));
@@ -324,7 +325,7 @@ export default function Create() {
     return (
         <div className="">
             <Navbar />
-            <div className="mx-20 flex justify-center mt-10">
+            <div className="mx-20 flex justify-center pt-24">
                 <div className="text-black flex gap-10 w-5/6">
                     <div>
                         <Upload
@@ -554,7 +555,12 @@ export default function Create() {
                     </Collapse>
 
                 }
-                <button className="px-8 py-3 rounded-lg bg-[#8D72E1] text-white text-lg" onClick={create}>Create Resume</button>
+                {
+                    address ? 
+                    <button className="px-8 py-3 rounded-lg bg-[#8D72E1] text-white text-lg" onClick={create}>Create Resume</button>
+                    :
+                    <ConnectButton showBalance={false}/>
+                }
             </div>
             <ToastContainer />
         </div>
