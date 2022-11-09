@@ -13,11 +13,11 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Navbar />
-      <div className="flex flex-col items-center pt-60 gap-2 h-screen">
+      <div className="flex flex-col items-center pt-32 gap-2 h-screen">
         <div className="flex text-4xl gap-2">Resume <p className="text-regal-purple font-weight-400">Building</p></div>
         <p className="text-4xl ">Made Simple</p>
-        <p className='text-gray-300'>Remote3 is a web3 based Resume buiding website</p>
-        <button className='px-4 py-2 rounded text-black bg-regal-purple'>Create Now</button>
+        <p className='text-gray-300'>Resume3 is a web3 based Resume buiding website powered by IPFS / Filecoin, Polygon, Chainlink and Spheron</p>
+        <button className='px-4 py-2 rounded text-black bg-regal-purple mt-2'>Create Now</button>
       </div>
       <div className=' flex justify-center'>
         <div className='mx-60 w-fit   rounded-lg flex flex-col items-center pb-20 h-screen'>

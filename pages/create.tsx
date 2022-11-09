@@ -16,6 +16,7 @@ import { Web3Storage } from "web3.storage";
 import { useAccount,useSigner,useContract } from "wagmi";
 import {abi,contractAddress} from "../constants/index"
 import { ConnectButton } from "@rainbow-me/rainbowkit";
+import { ethers } from "ethers";
 const getBase64 = (img: RcFile, callback: (url: string) => void) => {
     const reader = new FileReader();
     reader.addEventListener('load', () => callback(reader.result as string));
@@ -41,6 +42,10 @@ const { Panel } = Collapse;
 
 export default function Create() {
     const [loading, setLoading] = useState(false);
+    const [modal,setModal ] = useState<boolean>(false);
+    const [link1,setLink1] = useState<string>('')
+    const [link2,setLink2] = useState<string>('')
+    const [link3,setLink3] = useState<string>('')
     const [imageUrl, setImageUrl] = useState<string>();
     const [experience,setExperience] = useState<boolean>(true);
     const [projects,setProjects] = useState<boolean>(false);
@@ -251,7 +256,6 @@ export default function Create() {
             alert(err);
         }
     }
-    console.log(contract)
     const uploadButton = (
         <div className="w-60 rounded-full bg-white p-12">
         {loading ? <LoadingOutlined /> : <PlusOutlined />}
@@ -313,7 +317,12 @@ export default function Create() {
             console.log(price);
             const tx = await contract?.create(cid,{value:price});
             await tx?.wait();
+            setLink1(window.location.origin);
+            setLink2(window.location.origin+"/resume?address="+address);
+            const id = await contract?.tokenOwner(address);
+            setLink3(window.location.origin+"/resume/?id="+ethers.BigNumber.from(id).toNumber());
             toast.success("Resume Created Successfully");
+            setModal(true);
         }
         catch(err){
             console.log(err);
@@ -321,11 +330,12 @@ export default function Create() {
     }
 
 
-
     return (
         <div className="">
             <Navbar />
-            <div className="mx-20 flex justify-center pt-24">
+            {!modal ?
+            <div className="pt-24">
+            <div className="flex justify-center mx-20 ">
                 <div className="text-black flex gap-10 w-5/6">
                     <div>
                         <Upload
@@ -562,6 +572,18 @@ export default function Create() {
                     <ConnectButton showBalance={false}/>
                 }
             </div>
+            </div>
+            : 
+                <div className="mx-20 flex  pt-24 flex-col items-center text-lg">
+                    <div className="flex flex-col items-start gap-1">
+                        <p>You can share your resume by using any of the links</p>
+                        <button onClick={()=>window.open(link1)} className="mt-2">{link1}</button>
+                        <button onClick={()=>window.open(link2)}>{link2}</button>
+                        <button onClick={()=>window.open(link3)}>{link3}</button>
+                    </div>
+                    <p className="mt-10">Thanks for creating your resume by using Resume3 🎉 🎉</p>
+                </div>
+            }
             <ToastContainer />
         </div>
     )

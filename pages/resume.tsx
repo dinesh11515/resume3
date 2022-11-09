@@ -200,7 +200,7 @@ export default function Resume() {
             :
             <div className="h-screen flex items-center justify-center gap-4 text-xl font-['Lobster']  tracking-wider">
                 <img src="/loading.gif" height={30} width={30} alt="loading"/>
-                <p>Fetching Data From IPFS...</p>
+                <p>Fetching Data From IPFS and contract...</p>
             </div>
             }
 
