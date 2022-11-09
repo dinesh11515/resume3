@@ -17,6 +17,8 @@ import { useAccount,useSigner,useContract } from "wagmi";
 import {abi,contractAddress} from "../constants/index"
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { ethers } from "ethers";
+import 'antd/dist/antd.css';
+
 const getBase64 = (img: RcFile, callback: (url: string) => void) => {
     const reader = new FileReader();
     reader.addEventListener('load', () => callback(reader.result as string));

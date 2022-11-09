@@ -35,7 +35,7 @@ export default function Navbar() {
                 <div className="flex items-center gap-10">
                     {
                         link !== '' && 
-                    <button className="text-xl font-['Lobster'] tracking-widest" onClick={()=>window.open(window.location.href+link)}>My Resume</button>
+                    <button className="text-xl font-['Lobster'] tracking-widest" onClick={()=>window.open(window.location.origin+link)}>My Resume</button>
                     }
                     <Link href="/create">
                         <button className="text-xl font-['Lobster'] tracking-widest ">create</button>
