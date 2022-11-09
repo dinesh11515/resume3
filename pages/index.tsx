@@ -18,6 +18,24 @@ const Home: NextPage = () => {
         <p className="text-4xl ">Made Simple</p>
         <p className='text-gray-300'>Resume3 is a web3 based Resume buiding website powered by IPFS / Filecoin, Polygon, Chainlink and Spheron</p>
         <button className='px-4 py-2 rounded text-black bg-regal-purple mt-2'>Create Now</button>
+        <p className='mt-8 text-xl tracking-wide'>How to make resume in Resume3</p>
+        <div className='flex justify-evenly w-3/4 mt-4'>
+          <div className='flex flex-col gap-1 items-center w-1/5 p-10 hover:bg-[#b59cff] hover:text-black rounded-lg border-2 border-[#8D72E1]'>
+            <p className='text-lg underline underline-offset-2'>Step 1</p>
+            <p className='text-lg'>Choosing </p>
+            <p className='tracking-wide'>Right now there is only one template So Head to create page</p>
+          </div>
+          <div className='flex flex-col gap-1 items-center w-1/5 p-10 hover:bg-[#b59cff] hover:text-black rounded-lg border-2 border-[#8D72E1]'>
+            <p className='text-lg underline underline-offset-2'>Step 2</p>
+            <p className='text-lg'>Filling</p>
+            <p className='tracking-wider'>Fill the neccessary details including your name to your experience</p>
+          </div>
+          <div className='flex flex-col gap-1 items-center w-1/5 p-10 hover:bg-[#b59cff] hover:text-black rounded-lg border-2 border-[#8D72E1]'>
+            <p className='text-lg underline underline-offset-2'>Step 3</p>
+            <p className='text-lg'>Creating</p>
+            <p className='tracking-wide'>Click on create button and Pay the 0.5$ of matic and wait for the resume to be created</p>
+          </div>
+        </div>
       </div>
       <div className=' flex justify-center'>
         <div className='mx-60 w-fit   rounded-lg flex flex-col items-center pb-20 h-screen'>
