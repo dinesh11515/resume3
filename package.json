@@ -13,7 +13,7 @@
     "@chainlink/contracts": "^0.5.1",
     "@crossbell/ipfs-fetch": "^0.0.15",
     "@rainbow-me/rainbowkit": "^0.7.4",
-    "antd": "^4.23.6",
+    "antd": "^4.24.1",
     "cssnano": "^5.1.14",
     "ethers": "^5.7.2",
     "fs": "^0.0.1-security",
