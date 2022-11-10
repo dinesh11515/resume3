@@ -1,3 +1,5 @@
+import cssnano from 'cssnano';
+
 module.exports = {
   plugins: {
     'postcss-import': {},
