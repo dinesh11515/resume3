@@ -332,7 +332,7 @@ export default function Create() {
 
 
     return (
-        <div className="">
+        <div className="h-screen">
             <Navbar />
             {!modal ?
             <div className="pt-24">

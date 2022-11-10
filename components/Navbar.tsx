@@ -12,7 +12,9 @@ export default function Navbar() {
             const provider = new ethers.providers.JsonRpcProvider('https://rpc-mumbai.maticvigil.com')
             const contract = new ethers.Contract(contractAddress,abi,provider)
             const cid = await contract.getCidByAddress(address)
-            setLink(`/resume?ipfs=${cid}`);
+            if(cid){
+                setLink(`/resume?ipfs=${cid}`);
+            }
         }
         catch(err){
            alert(err)
