@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@500&display=swap');
+@import '~antd/dist/antd.css';
 
 @tailwind base;
 @tailwind components;
@@ -7,8 +8,6 @@
 
 body {
   color: white;
-}
-
-#__next {
   background-color: #10002B;
 }
+
