@@ -14,6 +14,7 @@
     "@crossbell/ipfs-fetch": "^0.0.15",
     "@rainbow-me/rainbowkit": "^0.7.4",
     "antd": "^4.23.6",
+    "cssnano": "^5.1.14",
     "ethers": "^5.7.2",
     "fs": "^0.0.1-security",
     "ipfs": "^0.65.0",
