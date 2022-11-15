@@ -1,34 +1,39 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Resume3
 
-## Getting Started
+Resume3 is a web3 based Resume buiding website powered by IPFS / Filecoin, Polygon, Chainlink and Spheron
 
-First, run the development server:
+[Demo link](https://resume3-631701.spheron.app/)
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+[Demo Video](https://www.youtube.com/watch?v=fdZ_QQeziB0)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Technologies Used :
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+#### IPFS :
+-> Data was uploaded to IPFS  ([upload code](https://github.com/dinesh11515/resume3/blob/main/pages/create.tsx#L288)) 
+([retrieve code](https://github.com/dinesh11515/resume3/blob/main/pages/resume.tsx#L38))
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+-> Resume3 was deployed on Filecoin using Spheron
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
 
-## Learn More
+#### Polygon :
+Smarts contracts are deployed to polygon mumbai testnet ([contract link](https://mumbai.polygonscan.com/address/0xD9cacab5D812cc1Ca347b19D3Cbbb869b814b86e#code))
 
-To learn more about Next.js, take a look at the following resources:
+#### Chainlink Services :
+Used Chainlink datafeeds for getting price data of Polygon ([code](https://github.com/dinesh11515/resume3/blob/main/contracts/contracts/Resume3.sol#L20))
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## What it does
+Resume3 enables users to build their resume by just filling the details and further it uploads the details to IPFS and then adds that ipfs link in smart contract and mints a upgradeable ERC721 NFT for user
+* Resume3 uses smart contracts for tracking the resumes of user.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## How we built it
+Resume3 was built by using Next and TailwindCSS for frontend
+* Solidity for smart contracts and hardhat for testing and deploying the smart contracts to Mumbai testnet
+* It uses web3.storage for storing data in IPFS 
+* Used wagmi for interaction with smart contract and RainbowKit for wallet connection 
+* Resume3 was hosted on Filecoin using Spheron
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## What we learned
+* Uploading and retrieving the data From IPFS.
+* Learnt integration of chianlink data feeds in smart contract
+## What's next for Resume3
+Right now Resume3 contains only one template need to add more resume templates and improving the UI to give better user experience of resume building

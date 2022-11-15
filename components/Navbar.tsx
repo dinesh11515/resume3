@@ -25,7 +25,7 @@ export default function Navbar() {
             getCidByAddress()
         }
     },[address])
-    console.log(typeof address)
+    
     
 
     return (

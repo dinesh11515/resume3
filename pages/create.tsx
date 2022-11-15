@@ -285,6 +285,8 @@ export default function Create() {
         ]
         return files
       }
+
+      //uploadig data to IPFS
       const storeContent = async (data : any) => {
         const web3storage_key = process.env.NEXT_PUBLIC_WEB3_STORAGE_KEY;
         const client = new Web3Storage({ token: web3storage_key || ""});
@@ -312,10 +314,10 @@ export default function Create() {
             data.education = educationData;
             data.skills = skillsData;
             data.competitions = competitionsData;
-            console.log(data);
+            
             const cid = await storeContent(data);
             const price = await contract?.getMatic();
-            console.log(price);
+            
             const tx = await contract?.create(cid,{value:price});
             await tx?.wait();
             setLink1(window.location.origin);
@@ -326,7 +328,7 @@ export default function Create() {
             setModal(true);
         }
         catch(err){
-            console.log(err);
+            alert(err);
         }
     }
 

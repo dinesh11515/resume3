@@ -33,7 +33,6 @@ export default function Resume() {
     const [data,setData] = useState<ResumeProps>()
     const router = useRouter()
     const {id,ipfs,address} = router.query
-    console.log(id,ipfs,address)
     
     const getData = async (ipfs : string) => {
         try{
