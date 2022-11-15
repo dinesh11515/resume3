@@ -9,8 +9,8 @@ Resume3 is a web3 based Resume buiding website powered by IPFS / Filecoin, Polyg
 ### Technologies Used :
 
 #### IPFS :
--> Data was uploaded to IPFS  ([upload code](https://github.com/dinesh11515/resume3/blob/main/pages/create.tsx#L288)) 
-([retrieve code](https://github.com/dinesh11515/resume3/blob/main/pages/resume.tsx#L38))
+-> Data was uploaded to IPFS  ([upload code](https://github.com/dinesh11515/resume3/blob/main/pages/create.tsx#L289)) 
+([retrieve code](https://github.com/dinesh11515/resume3/blob/main/pages/resume.tsx#L37))
 
 -> Resume3 was deployed on Filecoin using Spheron
 
@@ -19,7 +19,7 @@ Resume3 is a web3 based Resume buiding website powered by IPFS / Filecoin, Polyg
 Smarts contracts are deployed to polygon mumbai testnet ([contract link](https://mumbai.polygonscan.com/address/0xD9cacab5D812cc1Ca347b19D3Cbbb869b814b86e#code))
 
 #### Chainlink Services :
-Used Chainlink datafeeds for getting price data of Polygon ([code](https://github.com/dinesh11515/resume3/blob/main/contracts/contracts/Resume3.sol#L20))
+Used Chainlink datafeeds for getting price data of Polygon ([code](https://github.com/dinesh11515/resume3/blob/main/contracts/contracts/Resume3.sol#L5))
 
 ## What it does
 Resume3 enables users to build their resume by just filling the details and further it uploads the details to IPFS and then adds that ipfs link in smart contract and mints a upgradeable ERC721 NFT for user
