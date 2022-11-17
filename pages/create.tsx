@@ -17,6 +17,7 @@ import { useAccount,useSigner,useContract } from "wagmi";
 import {abi,contractAddress} from "../constants/index"
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { ethers } from "ethers";
+import { IpfsImage } from "react-ipfs-image";
 
 const getBase64 = (img: RcFile, callback: (url: string) => void) => {
     const reader = new FileReader();
@@ -61,6 +62,7 @@ export default function Create() {
     const [competitionsData,setCompetitionsData] = useState<any>([{},{},{}]);
     const {address} = useAccount();
     const [dataUrl,setDataUrl] = useState<string>();
+    const [fileName,setFileName] = useState<string>();
     const { data: signer, isError, isLoading } = useSigner();
     const contract = useContract({
         address: contractAddress,
@@ -224,7 +226,7 @@ export default function Create() {
 
 
     const handleBoth : UploadProps['onChange'] = (info: UploadChangeParam<UploadFile>) => {
-        handleChange(info);
+        // handleChange(info);
         uploadImage(info)
     }
 
@@ -247,11 +249,13 @@ export default function Create() {
     const uploadImage = async (info: UploadChangeParam<UploadFile>) => {
         try{
             const file = info.file.originFileObj as RcFile;
+            setFileName(file.name)
             const web3storage_key = process.env.NEXT_PUBLIC_WEB3_STORAGE_KEY;
             const client = new Web3Storage({ token: web3storage_key || ""});
             const cid = await client.put([file]);
             const img_url = ("ipfs://"+cid+"/"+file.name);
             setImageIpfsUrl(img_url);
+            setImageUrl(img_url);
         }
         catch(err){
             alert(err);
@@ -341,6 +345,7 @@ export default function Create() {
             <div className="flex justify-center mx-20 ">
                 <div className="text-black flex gap-10 w-5/6">
                     <div>
+                    {imageUrl ? <IpfsImage hash={imageUrl} className="h-32 w-32 m-2 rounded-full"/> :
                         <Upload
                             name="avatar"
                             listType="picture-card"
@@ -350,8 +355,9 @@ export default function Create() {
                             beforeUpload={beforeUpload}
                             onChange={handleBoth}
                             >
-                            {imageUrl ? <img src={imageUrl} alt="avatar" style={{ width: '100%' }} /> : uploadButton}
+                             {uploadButton}
                             </Upload>
+                            }                           
                     </div>
                     <div className="flex flex-col gap-2 w-full">
                         <div className="flex gap-3 w-full">
