@@ -4,6 +4,8 @@ Resume3 is a web3 based Resume buiding website powered by IPFS / Filecoin, Polyg
 
 [Demo link](https://resume3-631701.spheron.app/)
 
+[Demo link2](https://resume3-tau.vercel.app/)
+
 [Demo Video](https://www.youtube.com/watch?v=fdZ_QQeziB0)
 
 ### Technologies Used :
